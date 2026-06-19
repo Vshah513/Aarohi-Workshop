@@ -140,11 +140,13 @@
   .features-grid > div:hover > div:first-child { transform: translateY(-5px) rotate(-6deg); box-shadow: 0 12px 24px rgba(26,20,16,0.18); }
 
   /* ── Mobile nav ── */
-  .nav-toggle { display: none; align-items: center; justify-content: center; width: 44px; height: 44px;
-    background: none; border: none; cursor: pointer; padding: 10px; margin: -10px -10px -10px 0; }
-  .nav-toggle span { display: block; width: 24px; height: 2px; background: #1A1410; border-radius: 2px;
+  .nav-toggle { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+    width: 46px; height: 46px; background: rgba(158,27,63,0.07); border: 1.5px solid rgba(26,20,16,0.20);
+    border-radius: 12px; cursor: pointer; padding: 0; margin: 0;
+    transition: background .2s ease, border-color .2s ease; }
+  .nav-toggle:hover { background: rgba(158,27,63,0.13); border-color: #9E1B3F; }
+  .nav-toggle span { display: block; width: 22px; height: 2px; background: #1A1410; border-radius: 2px;
     transition: transform .3s ease, opacity .2s ease; }
-  .nav-toggle span + span { margin-top: 5px; }
   .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
   .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -542,7 +544,6 @@
         <div style="display:flex; flex-direction:column; gap:12px; font-family:'Oswald',sans-serif; letter-spacing:0.06em; font-size:15px;">
           <span>✆&nbsp;&nbsp;848-239-8105</span>
           <span>⌖&nbsp;&nbsp;Metuchen, New Jersey</span>
-          <a href="https://instagram.com/aarohi.art" target="_blank" rel="noopener" style="color:#F6EFDD; text-decoration:none;">❏&nbsp;&nbsp;@aarohi.art</a>
         </div>
       </div>
 
@@ -584,8 +585,6 @@
       <a href="tel:8482398105" style="color:#c8d2e4; text-decoration:none;">848-239-8105</a>
       <span style="opacity:0.4;">·</span>
       <span style="color:#c8d2e4;">METUCHEN, NJ</span>
-      <span style="opacity:0.4;">·</span>
-      <a href="https://instagram.com/aarohi.art" target="_blank" rel="noopener" style="color:#c8d2e4; text-decoration:none;">@AAROHI.ART</a>
     </div>
     <p style="font-size:12px; color:#6b7a93; margin:30px 0 0; letter-spacing:0.04em;">© 2026 Aarohi Desai · Pop Art Portrait Workshop · Made with color in New Jersey</p>
   </footer>
