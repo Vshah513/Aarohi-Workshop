@@ -45,6 +45,47 @@
   .btn-submit { transition: background .2s ease, transform .2s ease; }
   .btn-submit:hover { background: #7d1531 !important; transform: translateY(-2px) !important; }
 
+  /* ── Keyboard focus (accessibility) ── */
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible,
+  textarea:focus-visible, [tabindex]:focus-visible {
+    outline: 3px solid #C9982E; outline-offset: 3px; border-radius: 3px;
+  }
+  #compareHandle:focus-visible { outline: 3px solid #C9982E; outline-offset: 4px; border-radius: 999px; }
+
+  /* ── Anchor offset so sections clear the sticky header ── */
+  #about, #experience, #gallery, #voices, #reserve { scroll-margin-top: 84px; }
+
+  /* ── Sticky header: soft shadow once scrolled ── */
+  #siteHeader { transition: box-shadow .3s ease, background .3s ease; }
+  #siteHeader.scrolled { box-shadow: 0 6px 26px rgba(26,20,16,0.12); background: rgba(246,239,221,0.92); }
+
+  /* ── Subtle micro-interactions ── */
+  .features-grid > div > div:first-child { transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease; }
+  .features-grid > div:hover > div:first-child { transform: translateY(-5px) rotate(-6deg); box-shadow: 0 12px 24px rgba(26,20,16,0.18); }
+  .testimonials-grid figure { transition: transform .3s ease, box-shadow .3s ease; }
+  .testimonials-grid figure:hover { transform: translateY(-5px); box-shadow: 0 26px 48px rgba(26,20,16,0.14) !important; }
+
+  /* ── Mobile nav ── */
+  .nav-toggle { display: none; align-items: center; justify-content: center; width: 44px; height: 44px;
+    background: none; border: none; cursor: pointer; padding: 10px; margin: -10px -10px -10px 0; }
+  .nav-toggle span { display: block; width: 24px; height: 2px; background: #1A1410; border-radius: 2px;
+    transition: transform .3s ease, opacity .2s ease; }
+  .nav-toggle span + span { margin-top: 5px; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-menu { position: absolute; top: 100%; left: 0; right: 0; display: flex; flex-direction: column;
+    gap: 4px; padding: 14px 6vw 22px; background: rgba(246,239,221,0.98); backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(26,20,16,0.08);
+    box-shadow: 0 18px 30px rgba(26,20,16,0.12);
+    transform: translateY(-12px); opacity: 0; visibility: hidden; pointer-events: none;
+    transition: transform .28s ease, opacity .28s ease, visibility .28s; }
+  .mobile-menu.open { transform: translateY(0); opacity: 1; visibility: visible; pointer-events: auto; }
+  .mobile-menu a { font-family: 'Oswald', sans-serif; text-decoration: none; color: #1A1410; font-weight: 500;
+    letter-spacing: 0.12em; font-size: 14px; padding: 13px 4px; border-bottom: 1px solid rgba(26,20,16,0.07); }
+  .mobile-menu a.menu-cta { margin-top: 10px; background: #9E1B3F; color: #F6EFDD; font-weight: 600;
+    text-align: center; border: none; border-radius: 999px; padding: 14px; letter-spacing: 0.1em; }
+
   /* ── Responsive ── */
   @media (max-width: 920px) {
     .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; padding-top: 40px !important; padding-bottom: 60px !important; min-height: 0 !important; }
@@ -57,10 +98,20 @@
     .testimonials-grid { grid-template-columns: 1fr !important; }
     .reserve-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
     .nav-links { display: none !important; }
+    .nav-toggle { display: flex !important; }
   }
   @media (max-width: 560px) {
     .features-grid { grid-template-columns: 1fr !important; }
     .form-row { grid-template-columns: 1fr !important; }
+  }
+
+  /* ── Respect reduced-motion preference ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+      transition-duration: .001ms !important; scroll-behavior: auto !important;
+    }
+    [data-reveal] { opacity: 1 !important; transform: none !important; }
   }
 </style>
 </head>
@@ -68,7 +119,7 @@
 <body style="font-family: 'Archivo', sans-serif; background: #F6EFDD; color: #1A1410; overflow-x: hidden; position: relative;">
 
   <!-- ============ TOP NAV ============ -->
-  <header style="position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 16px 6vw; background: rgba(246,239,221,0.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(26,20,16,0.08);">
+  <header id="siteHeader" style="position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 16px 6vw; background: rgba(246,239,221,0.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(26,20,16,0.08);">
     <div style="display: flex; align-items: baseline; gap: 10px;">
       <span style="font-family: 'Oswald', sans-serif; font-weight: 700; letter-spacing: 0.28em; font-size: 15px; color: #1A1410;">AAROHI</span>
       <span style="font-family: 'Sacramento', cursive; font-size: 26px; line-height: 1; color: #9E1B3F;">desai</span>
@@ -80,6 +131,16 @@
       <a href="#voices" style="font-family:'Oswald',sans-serif; text-decoration:none; color:#1A1410; font-weight:500; letter-spacing:0.12em; font-size:13px;">VOICES</a>
       <a href="#reserve" class="btn-pill" style="font-family:'Oswald',sans-serif; text-decoration:none; background:#9E1B3F; color:#F6EFDD; font-weight:600; letter-spacing:0.1em; font-size:13px; padding:11px 22px; border-radius:999px;">RESERVE A SEAT</a>
     </nav>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about">THE WORKSHOP</a>
+      <a href="#experience">THE VIBE</a>
+      <a href="#gallery">GALLERY</a>
+      <a href="#voices">VOICES</a>
+      <a href="#reserve" class="menu-cta">RESERVE A SEAT</a>
+    </div>
   </header>
 
   <!-- ============ HERO ============ -->
@@ -123,13 +184,13 @@
       <div style="position:relative; padding:18px; background:#fff; border-radius:6px; box-shadow: 0 34px 64px rgba(26,20,16,0.24); transform: rotate(2.2deg); border:1px solid rgba(0,0,0,0.05); max-width:420px; margin:0 auto;">
         <div style="position:absolute; inset:6px; border:2px solid #C9982E; border-radius:4px; pointer-events:none; z-index:6;"></div>
         <div id="compare" style="position:relative; width:100%; aspect-ratio:4/5; border-radius:3px; overflow:hidden; cursor:ew-resize; touch-action:none; user-select:none;">
-          <img src="assets/hero-popart.jpg" alt="Pop art painted portrait" draggable="false" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
+          <img src="assets/hero-popart-finished.jpg" alt="Pop art painted portrait" draggable="false" decoding="async" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
           <span style="position:absolute; top:12px; right:12px; z-index:4; font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.14em; font-size:11px; color:#F6EFDD; background:rgba(15,42,82,0.8); padding:5px 11px; border-radius:999px;">POP ART</span>
           <div id="before" style="position:absolute; inset:0; clip-path: inset(0 50% 0 0); will-change: clip-path;">
             <img src="assets/hero-natural.jpg" alt="Original photo" draggable="false" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
             <span style="position:absolute; top:12px; left:12px; font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.14em; font-size:11px; color:#1A1410; background:rgba(246,239,221,0.88); padding:5px 11px; border-radius:999px;">YOUR PHOTO</span>
           </div>
-          <div id="handle" style="position:absolute; top:0; bottom:0; left:50%; width:3px; background:#F6EFDD; transform:translateX(-50%); z-index:5; box-shadow:0 0 0 1px rgba(0,0,0,0.18);">
+          <div id="compareHandle" role="slider" tabindex="0" aria-label="Reveal the painting — drag, or use arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50% painting revealed" style="position:absolute; top:0; bottom:0; left:50%; width:3px; background:#F6EFDD; transform:translateX(-50%); z-index:5; box-shadow:0 0 0 1px rgba(0,0,0,0.18);">
             <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:46px; height:46px; border-radius:50%; background:#9E1B3F; border:3px solid #F6EFDD; box-shadow:0 6px 18px rgba(0,0,0,0.32); display:flex; align-items:center; justify-content:center; color:#F6EFDD; font-size:17px; font-family:'Oswald',sans-serif;">⟷</div>
           </div>
         </div>
@@ -225,7 +286,7 @@
     </div>
 
     <div data-reveal style="text-align:center; margin-top:64px;">
-      <img src="assets/palette-strip.jpg" alt="Hand-mixed workshop palette" style="display:block; width:100%; max-width:740px; margin:0 auto; border-radius:4px; box-shadow:0 12px 28px rgba(0,0,0,0.14);">
+      <img src="assets/palette-strip.jpg" alt="Hand-mixed workshop palette" loading="lazy" decoding="async" style="display:block; width:100%; max-width:740px; margin:0 auto; border-radius:4px; box-shadow:0 12px 28px rgba(0,0,0,0.14);">
       <p style="font-family:'Oswald',sans-serif; letter-spacing:0.2em; font-size:12px; color:#7a6f63; margin:16px 0 0;">EVERY PALETTE IS MIXED BY HAND — THESE ARE THE COLORS FROM A RECENT PORTRAIT</p>
     </div>
   </section>
@@ -246,7 +307,7 @@
         <div class="tilt-card" style="position:relative; padding:16px; background:#F6EFDD; border-radius:5px; box-shadow:0 24px 44px rgba(0,0,0,0.42); transform: rotate(-3deg);">
           <span style="position:absolute; top:-13px; left:-13px; z-index:3; font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:0.1em; font-size:11px; color:#0F2A52; background:#C9982E; padding:7px 13px; border-radius:999px; box-shadow:0 6px 14px rgba(0,0,0,0.28); transform:rotate(-4deg);">REAL RESULT</span>
           <div style="border:3px solid #1C3C8E; border-radius:3px; overflow:hidden;">
-            <img src="assets/hero-popart.jpg" alt="A finished pop art portrait" style="display:block; width:100%; aspect-ratio:4/5; object-fit:cover;">
+            <img src="assets/hero-popart-gallery.jpg" alt="A finished pop art portrait painted at the workshop" loading="lazy" decoding="async" style="display:block; width:100%; aspect-ratio:4/5; object-fit:cover;">
           </div>
         </div>
         <p style="font-family:'Oswald',sans-serif; letter-spacing:0.14em; font-size:13px; color:#c8d2e4; text-align:center; margin:18px 0 0;">PAINTED AT THE WORKSHOP · GOUACHE</p>
@@ -413,34 +474,108 @@
 
 <script>
 (function () {
-  // ── Before / after comparison slider ──────────────────────────────────
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Before / after comparison slider (eased, keyboard-accessible) ──────
   var cont = document.getElementById('compare');
   var before = document.getElementById('before');
-  var handle = document.getElementById('handle');
+  var handle = document.getElementById('compareHandle');
 
-  function setSplit(pct) {
-    var p = Math.max(2, Math.min(98, pct));
-    if (before) before.style.clipPath = 'inset(0 ' + (100 - p) + '% 0 0)';
-    if (handle) handle.style.left = p + '%';
+  if (cont && before && handle) {
+    var target = 52, current = 52, rafId = null;
+    var clamp = function (p) { return Math.max(2, Math.min(98, p)); };
+
+    var paint = function (p) {
+      before.style.clipPath = 'inset(0 ' + (100 - p) + '% 0 0)';
+      handle.style.left = p + '%';
+    };
+    var announce = function (p) {
+      var r = Math.round(p);
+      handle.setAttribute('aria-valuenow', r);
+      handle.setAttribute('aria-valuetext', Math.round(100 - r) + '% painting revealed');
+    };
+
+    // rAF loop eases `current` toward `target` so motion glides instead of
+    // snapping to the cursor — fixes the over-sensitive feel. Stops itself
+    // once settled.
+    var step = function () {
+      current += (target - current) * 0.18;
+      if (Math.abs(target - current) < 0.1) { current = target; rafId = null; }
+      paint(current);
+      if (rafId !== null) rafId = requestAnimationFrame(step);
+    };
+    var setTarget = function (p, immediate) {
+      target = clamp(p);
+      announce(target);
+      if (immediate || reduceMotion) {
+        if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+        current = target; paint(current);
+      } else if (rafId === null) {
+        rafId = requestAnimationFrame(step);
+      }
+    };
+    var fromX = function (clientX) {
+      var r = cont.getBoundingClientRect();
+      return ((clientX - r.left) / r.width) * 100;
+    };
+
+    var dragging = false;
+    cont.addEventListener('pointerdown', function (e) {
+      dragging = true;
+      try { cont.setPointerCapture(e.pointerId); } catch (err) {}
+      setTarget(fromX(e.clientX));
+      e.preventDefault();
+    });
+    cont.addEventListener('pointermove', function (e) { if (dragging) setTarget(fromX(e.clientX)); });
+    var endDrag = function () { dragging = false; };
+    cont.addEventListener('pointerup', endDrag);
+    cont.addEventListener('pointercancel', endDrag);
+
+    // Keyboard control on the handle (arrows / page / home-end).
+    handle.addEventListener('keydown', function (e) {
+      var k = e.key, p = target;
+      if (k === 'ArrowLeft' || k === 'ArrowDown') p = target - 4;
+      else if (k === 'ArrowRight' || k === 'ArrowUp') p = target + 4;
+      else if (k === 'PageDown') p = target - 12;
+      else if (k === 'PageUp') p = target + 12;
+      else if (k === 'Home') p = 2;
+      else if (k === 'End') p = 98;
+      else return;
+      e.preventDefault();
+      setTarget(p);
+    });
+
+    setTarget(52, true);
+    // One-time hint sweep so it's obviously draggable (skip if reduced-motion).
+    if (!reduceMotion) {
+      setTimeout(function () {
+        var seq = [61, 69, 61, 50, 43, 50, 52], i = 0;
+        var sweep = function () { if (i < seq.length) { setTarget(seq[i++]); setTimeout(sweep, 220); } };
+        sweep();
+      }, 1100);
+    }
   }
 
-  if (cont) {
-    var update = function (clientX) {
-      var r = cont.getBoundingClientRect();
-      setSplit(((clientX - r.left) / r.width) * 100);
-    };
-    var dragging = false;
-    cont.addEventListener('pointerdown', function (e) { dragging = true; update(e.clientX); e.preventDefault(); });
-    window.addEventListener('pointermove', function (e) { if (dragging) update(e.clientX); });
-    window.addEventListener('pointerup', function () { dragging = false; });
-    setSplit(52);
-    // one-time hint sweep so it's obviously draggable
-    setTimeout(function () {
-      var seq = [52, 61, 69, 61, 50, 43, 50, 52];
-      var i = 0;
-      var tick = function () { if (i < seq.length) { setSplit(seq[i++]); setTimeout(tick, 135); } };
-      tick();
-    }, 1000);
+  // ── Mobile nav toggle ──────────────────────────────────────────────────
+  var navToggle = document.getElementById('navToggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (navToggle && mobileMenu) {
+    var closeMenu = function () { mobileMenu.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); };
+    var openMenu = function () { mobileMenu.classList.add('open'); navToggle.setAttribute('aria-expanded', 'true'); };
+    navToggle.addEventListener('click', function () {
+      mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 920) closeMenu(); });
+  }
+
+  // ── Sticky header gains a soft shadow once scrolled ────────────────────
+  var header = document.getElementById('siteHeader');
+  if (header) {
+    var onScroll = function () { header.classList.toggle('scrolled', window.scrollY > 8); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
 
   // ── Marquee content ────────────────────────────────────────────────────
