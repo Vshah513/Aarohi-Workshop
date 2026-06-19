@@ -129,7 +129,7 @@
   #compareHandle:focus-visible { outline: 3px solid #C9982E; outline-offset: 4px; border-radius: 999px; }
 
   /* ── Anchor offset so sections clear the sticky header ── */
-  #about, #experience, #gallery, #voices, #reserve { scroll-margin-top: 84px; }
+  #about, #experience, #gallery, #reserve { scroll-margin-top: 84px; }
 
   /* ── Sticky header: soft shadow once scrolled ── */
   #siteHeader { transition: box-shadow .3s ease, background .3s ease; }
@@ -138,8 +138,6 @@
   /* ── Subtle micro-interactions ── */
   .features-grid > div > div:first-child { transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease; }
   .features-grid > div:hover > div:first-child { transform: translateY(-5px) rotate(-6deg); box-shadow: 0 12px 24px rgba(26,20,16,0.18); }
-  .testimonials-grid figure { transition: transform .3s ease, box-shadow .3s ease; }
-  .testimonials-grid figure:hover { transform: translateY(-5px); box-shadow: 0 26px 48px rgba(26,20,16,0.14) !important; }
 
   /* ── Mobile nav ── */
   .nav-toggle { display: none; align-items: center; justify-content: center; width: 44px; height: 44px;
@@ -179,7 +177,6 @@
     .details-band { grid-template-columns: 1fr !important; }
     .details-band > div { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.12); }
     .logistics-grid { grid-template-columns: 1fr !important; }
-    .testimonials-grid { grid-template-columns: 1fr !important; }
     .reserve-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
     .nav-links { display: none !important; }
     .nav-toggle { display: flex !important; }
@@ -204,6 +201,15 @@
     #experience { padding: 14px 6vw 6px !important; }
     #experience > div[data-reveal] { margin-top: 38px !important; }
 
+    /* Vibe photos → compact bento: two squares on top, one wide banner below
+       (feature = the real photo). cover-crop keeps proportions undistorted. */
+    .vibe-media { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+    .vibe-media > div { grid-row: auto !important; }
+    .vibe-media > div > div { height: auto !important; transform: none !important; }
+    .vibe-media image-slot { aspect-ratio: 1 / 1 !important; height: auto !important; min-height: 0 !important; }
+    .vibe-media > div:first-child { grid-column: 1 / -1 !important; grid-row: 2 !important; }
+    .vibe-media > div:first-child image-slot { aspect-ratio: 16 / 9 !important; }
+
     /* Gallery Wall → a real grid: featured result on top, two slots side-by-side. */
     #gallery { padding: 52px 6vw !important; }
     #gallery > div:first-child { margin-bottom: 28px !important; }
@@ -220,15 +226,6 @@
     .logistics-grid > div p:nth-child(1) { font-size: 10px !important; letter-spacing: 0.12em !important; }
     .logistics-grid > div p:nth-child(2) { font-size: 15px !important; margin-bottom: 6px !important; }
     .logistics-grid > div p:nth-child(3) { font-size: 11.5px !important; line-height: 1.45 !important; }
-
-    /* Testimonials → horizontal swipe carousel (one screen, snaps card to card). */
-    #voices { padding: 14px 6vw 56px !important; }
-    #voices > div:first-child { margin-bottom: 26px !important; }
-    .testimonials-grid { display: flex !important; gap: 14px !important; overflow-x: auto !important;
-      scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
-      margin: 0 -6vw !important; padding: 4px 6vw 14px !important; scrollbar-width: none; }
-    .testimonials-grid::-webkit-scrollbar { display: none; }
-    .testimonials-grid figure { flex: 0 0 85% !important; scroll-snap-align: center; padding: 26px 24px 24px !important; }
 
     /* Reserve form — tighter so the page lands faster. */
     #reserve { padding: 54px 6vw !important; }
@@ -294,7 +291,6 @@
       <a href="#about" style="font-family:'Oswald',sans-serif; text-decoration:none; color:#1A1410; font-weight:500; letter-spacing:0.12em; font-size:13px;">THE WORKSHOP</a>
       <a href="#experience" style="font-family:'Oswald',sans-serif; text-decoration:none; color:#1A1410; font-weight:500; letter-spacing:0.12em; font-size:13px;">THE VIBE</a>
       <a href="#gallery" style="font-family:'Oswald',sans-serif; text-decoration:none; color:#1A1410; font-weight:500; letter-spacing:0.12em; font-size:13px;">GALLERY</a>
-      <a href="#voices" style="font-family:'Oswald',sans-serif; text-decoration:none; color:#1A1410; font-weight:500; letter-spacing:0.12em; font-size:13px;">VOICES</a>
       <a href="#reserve" class="btn-pill" style="font-family:'Oswald',sans-serif; text-decoration:none; background:#9E1B3F; color:#F6EFDD; font-weight:600; letter-spacing:0.1em; font-size:13px; padding:11px 22px; border-radius:999px;">RESERVE A SEAT</a>
     </nav>
     <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -304,7 +300,6 @@
       <a href="#about">THE WORKSHOP</a>
       <a href="#experience">THE VIBE</a>
       <a href="#gallery">GALLERY</a>
-      <a href="#voices">VOICES</a>
       <a href="#reserve" class="menu-cta">RESERVE A SEAT</a>
     </div>
   </header>
@@ -432,7 +427,7 @@
         </ul>
       </div>
 
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px;">
+      <div class="vibe-media" style="display:grid; grid-template-columns:1fr 1fr; gap:22px;">
         <div data-reveal style="grid-row:span 2;">
           <div style="background:#fff; padding:13px; border-radius:5px; box-shadow:0 18px 38px rgba(26,20,16,0.14); transform:rotate(-1.6deg); height:100%;">
             <image-slot id="exp-1" readonly src="./uploads/painting%20together.jpeg" style="display:block; width:100%; height:100%; min-height:330px;" shape="rect" radius="2" placeholder="Wine &amp; good company"></image-slot>
@@ -440,12 +435,12 @@
         </div>
         <div data-reveal style="transition:opacity .8s ease .06s, transform .8s ease .06s;">
           <div style="background:#fff; padding:13px; border-radius:5px; box-shadow:0 18px 38px rgba(26,20,16,0.14); transform:rotate(1.8deg);">
-            <image-slot id="exp-2" readonly style="display:block; width:100%; aspect-ratio:4/3;" shape="rect" radius="2" placeholder="Brushes &amp; palette"></image-slot>
+            <image-slot id="exp-2" readonly src="./uploads/Paint%20stuff.jpeg" style="display:block; width:100%; aspect-ratio:4/3;" shape="rect" radius="2" placeholder="Brushes &amp; palette"></image-slot>
           </div>
         </div>
         <div data-reveal style="transition:opacity .8s ease .12s, transform .8s ease .12s;">
           <div style="background:#fff; padding:13px; border-radius:5px; box-shadow:0 18px 38px rgba(26,20,16,0.14); transform:rotate(-1.2deg);">
-            <image-slot id="exp-3" readonly style="display:block; width:100%; aspect-ratio:4/3;" shape="rect" radius="2" placeholder="Painting together"></image-slot>
+            <image-slot id="exp-3" readonly src="./uploads/Last%20charc.jpeg" style="display:block; width:100%; aspect-ratio:4/3;" shape="rect" radius="2" placeholder="Painting together"></image-slot>
           </div>
         </div>
       </div>
@@ -533,49 +528,6 @@
         <p style="font-family:'Oswald',sans-serif; font-weight:700; font-size:22px; margin:0 0 10px; color:#1A1410;">Solo or Friends</p>
         <p style="font-size:15px; line-height:1.6; color:#3a322a; margin:0;">Everyone is welcome. Come for the art, stay for the fun.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- ============ TESTIMONIALS ============ -->
-  <section id="voices" style="padding: 40px 6vw 96px;">
-    <div style="text-align:center; margin-bottom:54px;">
-      <p data-reveal style="font-family:'Oswald',sans-serif; letter-spacing:0.32em; font-size:13px; color:#9E1B3F; margin:0 0 12px;">FROM THE STUDIO</p>
-      <h2 data-reveal style="font-family:'DM Serif Display',serif; font-weight:400; font-size: clamp(32px,4.2vw,56px); margin:0;">What the moms are saying</h2>
-    </div>
-    <div class="testimonials-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:30px;">
-      <figure data-reveal style="margin:0; background:#fff; border-radius:14px; padding:34px 30px 28px; box-shadow:0 16px 36px rgba(26,20,16,0.08); border-top:5px solid #9E1B3F;">
-        <p style="font-family:'DM Serif Display',serif; font-size:54px; line-height:0.5; color:#9E1B3F; margin:6px 0 14px; height:24px;">“</p>
-        <blockquote style="margin:0 0 22px; font-size:16.5px; line-height:1.6; color:#2a241e;">I hadn't picked up a paintbrush in twenty years. Two hours with Aarohi and I walked out with a portrait that's now framed in my hallway. I tear up a little every time I pass it.</blockquote>
-        <figcaption style="display:flex; align-items:center; gap:14px;">
-          <span style="width:46px; height:46px; border-radius:50%; background:#9E1B3F; color:#F6EFDD; display:flex; align-items:center; justify-content:center; font-family:'Oswald',sans-serif; font-weight:700; font-size:17px;">LM</span>
-          <span>
-            <span style="display:block; font-family:'Oswald',sans-serif; font-weight:600; font-size:15px; color:#1A1410; letter-spacing:0.02em;">Linda Marchetti</span>
-            <span style="display:block; font-size:13px; color:#7a6f63;">Edison, NJ</span>
-          </span>
-        </figcaption>
-      </figure>
-      <figure data-reveal style="margin:0; background:#fff; border-radius:14px; padding:34px 30px 28px; box-shadow:0 16px 36px rgba(26,20,16,0.08); border-top:5px solid #1C3C8E;">
-        <p style="font-family:'DM Serif Display',serif; font-size:54px; line-height:0.5; color:#1C3C8E; margin:6px 0 14px; height:24px;">“</p>
-        <blockquote style="margin:0 0 22px; font-size:16.5px; line-height:1.6; color:#2a241e;">I came with three girlfriends and we laughed the entire time. Aarohi makes you feel like a real artist — patient, warm, and never rushed. Best afternoon I've had in ages.</blockquote>
-        <figcaption style="display:flex; align-items:center; gap:14px;">
-          <span style="width:46px; height:46px; border-radius:50%; background:#1C3C8E; color:#F6EFDD; display:flex; align-items:center; justify-content:center; font-family:'Oswald',sans-serif; font-weight:700; font-size:17px;">PR</span>
-          <span>
-            <span style="display:block; font-family:'Oswald',sans-serif; font-weight:600; font-size:15px; color:#1A1410; letter-spacing:0.02em;">Priya Raghavan</span>
-            <span style="display:block; font-size:13px; color:#7a6f63;">Metuchen, NJ</span>
-          </span>
-        </figcaption>
-      </figure>
-      <figure data-reveal style="margin:0; background:#fff; border-radius:14px; padding:34px 30px 28px; box-shadow:0 16px 36px rgba(26,20,16,0.08); border-top:5px solid #245A33;">
-        <p style="font-family:'DM Serif Display',serif; font-size:54px; line-height:0.5; color:#245A33; margin:6px 0 14px; height:24px;">“</p>
-        <blockquote style="margin:0 0 22px; font-size:16.5px; line-height:1.6; color:#2a241e;">I'm not a 'crafty' person and I was nervous. By the end I was genuinely proud of what I made. The wine and snacks were a lovely touch — felt like a real treat for myself.</blockquote>
-        <figcaption style="display:flex; align-items:center; gap:14px;">
-          <span style="width:46px; height:46px; border-radius:50%; background:#245A33; color:#F6EFDD; display:flex; align-items:center; justify-content:center; font-family:'Oswald',sans-serif; font-weight:700; font-size:17px;">DC</span>
-          <span>
-            <span style="display:block; font-family:'Oswald',sans-serif; font-weight:600; font-size:15px; color:#1A1410; letter-spacing:0.02em;">Donna Caruso</span>
-            <span style="display:block; font-size:13px; color:#7a6f63;">Highland Park, NJ</span>
-          </span>
-        </figcaption>
-      </figure>
     </div>
   </section>
 
