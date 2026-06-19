@@ -26,6 +26,55 @@
   [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s ease; }
   [data-reveal].ds-revealed { opacity: 1 !important; transform: none !important; }
 
+  /* ============ PAINTED INTRO PRELOADER ============ */
+  html.pl-active { overflow: hidden; }
+  #preloader {
+    position: fixed; inset: 0; z-index: 99999; background: #F6EFDD;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+    will-change: transform; animation: plOut .64s cubic-bezier(.76,0,.24,1) 2.15s forwards;
+  }
+  .pl-art { position: relative; width: min(86vw, 600px);
+    display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+  /* Nameplate — one brush sweep paints the word + swoosh on, left to right.
+     Everything painterly is scoped INSIDE .pl-name so it can never overlap the
+     script / tagline beneath it. */
+  .pl-stage { position: relative; display: inline-block; }
+  .pl-name {
+    position: relative; display: inline-block; padding-bottom: .42em;
+    clip-path: inset(0 102% 0 -3%); -webkit-clip-path: inset(0 102% 0 -3%);
+    animation: plWipe 1.05s cubic-bezier(.66,.04,.29,1) .18s forwards;
+  }
+  .pl-word { position: relative; z-index: 2; font-family: 'DM Serif Display', serif; font-weight: 400;
+    font-size: clamp(58px, 13vw, 118px); line-height: .92; letter-spacing: .015em; }
+  .pl-word span { display: inline-block; }
+  .pl-underline { position: absolute; left: -4%; bottom: 0; width: 108%; height: auto; z-index: 1; overflow: visible; }
+  /* textured paint-head that rides the leading edge of the sweep */
+  .pl-tip {
+    position: absolute; left: -3%; bottom: .05em; width: clamp(30px,5.6vw,48px); height: clamp(30px,5.6vw,48px);
+    margin-left: clamp(-24px,-2.8vw,-15px); opacity: 0; z-index: 3; pointer-events: none;
+    background: radial-gradient(circle at 40% 36%, #C9982E 36%, rgba(201,152,46,.55) 64%, transparent 72%);
+    filter: url(#plRough);
+    animation: plHead 1.05s cubic-bezier(.66,.04,.29,1) .18s forwards;
+  }
+  .pl-script { font-family: 'Sacramento', cursive; color: #9E1B3F; font-size: clamp(34px, 7vw, 58px);
+    line-height: 1; margin-top: 10px; opacity: 0; transform: translateY(16px) rotate(-2deg);
+    animation: plRise .6s ease 1.24s forwards; }
+  .pl-tag { margin-top: 22px; font-family: 'Oswald', sans-serif; font-weight: 600; letter-spacing: .44em;
+    font-size: clamp(11px, 2.4vw, 15px); color: #1A1410; text-indent: .44em;
+    opacity: 0; transform: translateY(10px); animation: plRise .5s ease 1.52s forwards; }
+  .pl-tag-line { display: block; width: 124px; height: 2px; background: #C9982E; margin: 13px auto 0;
+    transform: scaleX(0); transform-origin: center; animation: plLine .55s ease 1.6s forwards; }
+  .pl-dab { position: absolute; border-radius: 50%; opacity: 0; z-index: 0;
+    animation: plDab .55s cubic-bezier(.2,.8,.2,1) forwards; }
+
+  @keyframes plWipe { to { clip-path: inset(0 -3% 0 -3%); -webkit-clip-path: inset(0 -3% 0 -3%); } }
+  @keyframes plHead { 0% { opacity: 0; left: -3%; } 9% { opacity: 1; } 86% { opacity: 1; } 100% { opacity: 0; left: 103%; } }
+  @keyframes plRise { to { opacity: 1; transform: none; } }
+  @keyframes plLine { to { transform: scaleX(1); } }
+  @keyframes plDab  { 0% { opacity: 0; transform: scale(0); } 60% { opacity: .9; } 100% { opacity: .82; transform: scale(1); } }
+  @keyframes plOut  { to { transform: translateY(-106%) skewY(-3deg); } }
+
   /* ── Hover / focus interactions (translated from the prototype's style-hover/style-focus) ── */
   .btn-pill { transition: transform .2s ease, box-shadow .2s ease; }
   .btn-pill:hover { transform: translateY(-2px) !important; box-shadow: 0 8px 22px rgba(158,27,63,0.35) !important; }
@@ -117,6 +166,41 @@
 </head>
 
 <body style="font-family: 'Archivo', sans-serif; background: #F6EFDD; color: #1A1410; overflow-x: hidden; position: relative;">
+
+  <!-- ============ PAINTED INTRO PRELOADER ============ -->
+  <div id="preloader" aria-hidden="true">
+    <div class="pl-art">
+      <span class="pl-dab" style="width:18px; height:18px; background:#9E1B3F; top:-12%; left:3%; animation-delay:.78s;"></span>
+      <span class="pl-dab" style="width:13px; height:13px; background:#1C3C8E; top:-5%; right:5%; animation-delay:.92s;"></span>
+      <span class="pl-dab" style="width:22px; height:22px; background:#245A33; top:34%; left:-2%; animation-delay:1.0s;"></span>
+      <span class="pl-dab" style="width:12px; height:12px; background:#3E2178; top:18%; right:-1%; animation-delay:.86s;"></span>
+
+      <div class="pl-stage">
+        <div class="pl-name">
+          <div class="pl-word" aria-label="Aarohi">
+            <span style="color:#9E1B3F;">A</span><span style="color:#1C3C8E;">A</span><span style="color:#245A33;">R</span><span style="color:#C9982E;">O</span><span style="color:#0F2A52;">H</span><span style="color:#9E1B3F;">I</span>
+          </div>
+          <svg class="pl-underline" viewBox="0 0 600 80" fill="none" aria-hidden="true">
+            <defs>
+              <filter id="plRough" x="-30%" y="-90%" width="160%" height="280%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.018 0.15" numOctaves="2" seed="5" result="n"></feTurbulence>
+                <feDisplacementMap in="SourceGraphic" in2="n" scale="12" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+              </filter>
+            </defs>
+            <g filter="url(#plRough)">
+              <path d="M14,40 C150,14 250,22 322,34 C405,49 506,52 588,28" stroke="#C9982E" stroke-width="18" stroke-linecap="round"></path>
+              <path d="M36,54 C150,42 262,46 330,51 C420,59 500,57 572,45" stroke="#9E1B3F" stroke-width="7" stroke-linecap="round" opacity="0.85"></path>
+            </g>
+          </svg>
+        </div>
+        <span class="pl-tip"></span>
+      </div>
+
+      <div class="pl-script">desai</div>
+      <div class="pl-tag">PORTRAIT WORKSHOP<span class="pl-tag-line"></span></div>
+    </div>
+  </div>
+
 
   <!-- ============ TOP NAV ============ -->
   <header id="siteHeader" style="position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 16px 6vw; background: rgba(246,239,221,0.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(26,20,16,0.08);">
@@ -476,6 +560,16 @@
 (function () {
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // ── Painted intro preloader: lock scroll, then remove once the canvas lifts ──
+  var preloader = document.getElementById('preloader');
+  if (preloader) {
+    document.documentElement.classList.add('pl-active');
+    setTimeout(function () {
+      document.documentElement.classList.remove('pl-active');
+      if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+    }, reduceMotion ? 700 : 2850);
+  }
+
   // ── Before / after comparison slider (eased, keyboard-accessible) ──────
   var cont = document.getElementById('compare');
   var before = document.getElementById('before');
@@ -552,7 +646,7 @@
         var seq = [61, 69, 61, 50, 43, 50, 52], i = 0;
         var sweep = function () { if (i < seq.length) { setTarget(seq[i++]); setTimeout(sweep, 220); } };
         sweep();
-      }, 1100);
+      }, 2950);
     }
   }
 
