@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Sacramento&family=Oswald:wght@400;500;600;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes floatblob { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-18px) rotate(8deg); } }
+  ::selection { background: #9E1B3F; color: #F6EFDD; }
+  .ds-revealed { opacity: 1 !important; transform: none !important; }
+</style>
+</helmet>
+
+<div data-screen-label="Landing Page" style="font-family: 'Archivo', sans-serif; background: #F6EFDD; color: #1A1410; overflow-x: hidden; position: relative;">
+
+  <!-- ============ TOP NAV ============ -->
+  <header style="position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 16px 6vw; background: rgba(246,239,221,0.82); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(26,20,16,0.08);">
+    <div style="display: flex; align-items: baseline; gap: 10px;">
+      <span style="font-family: 'Oswald', sans-serif; font-weight: 700; letter-spacing: 0.28em; font-size: 15px; color: #1A1410;">AAROHI</span>
+      <span style="font-family: 'Sacramento', cursive; font-size: 26px; line-height: 1; color: #9E1B3F;">desai</span>
+    </div>
+    <nav style="display: flex; align-items: center; gap: 30px;">
+      <a href="#about" style="font-family:'Oswald',sans-serif; text-decoration:none; color:#1A1410; font-weight:500; letter-spacing:0.12em; font-size:13px;">THE WORKSHOP</a>
+      <a href="#experience" style="font-family:'Oswald',sans-serif; text-decoration:none; color:#1A1410; font-weight:500; letter-spacing:0.12em; font-size:13px;">THE VIBE</a>
+      <a href="#gallery" style="font-family:'Oswald',sans-serif; text-decoration:none; color:#1A1410; font-weight:500; letter-spacing:0.12em; font-size:13px;">GALLERY</a>
+      <a href="#voices" style="font-family:'Oswald',sans-serif; text-decoration:none; color:#1A1410; font-weight:500; letter-spacing:0.12em; font-size:13px;">VOICES</a>
+      <a href="#reserve" style="font-family:'Oswald',sans-serif; text-decoration:none; background:#9E1B3F; color:#F6EFDD; font-weight:600; letter-spacing:0.1em; font-size:13px; padding:11px 22px; border-radius:999px; transition: transform .2s ease, box-shadow .2s ease;" style-hover="background:#9E1B3F; color:#F6EFDD; transform: translateY(-2px); box-shadow: 0 8px 22px rgba(158,27,63,0.35);">RESERVE A SEAT</a>
+    </nav>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section style="position: relative; padding: 70px 6vw 90px; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; min-height: 86vh;">
+    <!-- decorative paint blobs -->
+    <div style="position:absolute; top:8%; right:30%; width:120px; height:120px; background: radial-gradient(circle at 35% 35%, #C9982E, #C9982E 60%, transparent 62%); opacity:0.16; filter: blur(2px); animation: floatblob 9s ease-in-out infinite; pointer-events:none;"></div>
+    <div style="position:absolute; bottom:10%; left:42%; width:90px; height:90px; background: radial-gradient(circle at 35% 35%, #1C3C8E, #1C3C8E 60%, transparent 62%); opacity:0.12; animation: floatblob 11s ease-in-out infinite reverse; pointer-events:none;"></div>
+
+    <div style="position: relative; z-index: 2;">
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:22px;">
+        <span style="height:2px; width:42px; background:#1A1410; display:inline-block;"></span>
+        <span style="font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.34em; font-size:14px; color:#1A1410;">BOLD. COLORFUL. YOU.</span>
+      </div>
+
+      <h1 style="font-family:'DM Serif Display', serif; font-weight:400; line-height:0.86; margin:0; font-size: clamp(56px, 7.2vw, 110px); letter-spacing:-0.01em;">
+        <span style="color:#9E1B3F;">P</span><span style="color:#1C3C8E;">O</span><span style="color:#245A33;">P</span>
+        <span style="color:#C9982E;">A</span><span style="color:#0F2A52;">R</span><span style="color:#9E1B3F;">T</span><br>
+        <span style="color:#1A1410;">P</span><span style="color:#1C3C8E;">O</span><span style="color:#1A1410;">RTRA</span><span style="color:#C9982E;">I</span><span style="color:#1A1410;">T</span>
+      </h1>
+
+      <div style="display:flex; align-items:center; gap:16px; margin:18px 0 4px;">
+        <span style="height:2px; flex:0 0 28px; background:#C9982E;"></span>
+        <span style="font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.42em; font-size: clamp(20px,2.4vw,34px); color:#C9982E;">WORKSHOP</span>
+        <span style="height:2px; flex:1; background:#C9982E; opacity:0.5;"></span>
+      </div>
+
+      <p style="font-family:'Sacramento',cursive; font-size: clamp(38px,4.6vw,58px); color:#9E1B3F; margin:6px 0 24px; line-height:1;">by Aarohi</p>
+
+      <p style="font-size: clamp(17px,1.5vw,20px); line-height:1.55; max-width:30ch; color:#322a22; margin:0 0 34px;">
+        Turn your favorite photo into a <strong style="color:#9E1B3F;">vibrant pop&nbsp;art portrait</strong> you'll be proud to hang on the wall. A creative escape, just for you.
+      </p>
+
+      <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap;">
+        <a href="#reserve" style="font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.1em; font-size:15px; background:#9E1B3F; color:#F6EFDD; padding:16px 34px; border-radius:999px; text-decoration:none; transition: transform .2s ease, box-shadow .2s ease;" style-hover="background:#9E1B3F; color:#F6EFDD; transform: translateY(-3px); box-shadow:0 12px 30px rgba(158,27,63,0.4);">RESERVE YOUR SEAT</a>
+        <a href="tel:8482398105" style="font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.1em; font-size:15px; color:#1A1410; padding:15px 22px; border-radius:999px; border:2px solid #1A1410; text-decoration:none; transition: background .2s ease, color .2s ease;" style-hover="background:#1A1410; color:#F6EFDD;">CALL · 848-239-8105</a>
+      </div>
+    </div>
+
+    <!-- Before / After comparison -->
+    <div style="position: relative; z-index: 2; justify-self: center; width:100%;">
+      <div style="position:relative; padding:18px; background:#fff; border-radius:6px; box-shadow: 0 34px 64px rgba(26,20,16,0.24); transform: rotate(2.2deg); border:1px solid rgba(0,0,0,0.05); max-width:420px; margin:0 auto;">
+        <div style="position:absolute; inset:6px; border:2px solid #C9982E; border-radius:4px; pointer-events:none; z-index:6;"></div>
+        <div ref="{{ compareRef }}" style="position:relative; width:100%; aspect-ratio:4/5; border-radius:3px; overflow:hidden; cursor:ew-resize; touch-action:none; user-select:none;">
+          <img src="assets/hero-popart.jpg" alt="Pop art painted portrait" draggable="false" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
+          <span style="position:absolute; top:12px; right:12px; z-index:4; font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.14em; font-size:11px; color:#F6EFDD; background:rgba(15,42,82,0.8); padding:5px 11px; border-radius:999px;">POP ART</span>
+          <div ref="{{ beforeRef }}" style="position:absolute; inset:0; clip-path: inset(0 50% 0 0); will-change: clip-path;">
+            <img src="assets/hero-natural.jpg" alt="Original photo" draggable="false" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
+            <span style="position:absolute; top:12px; left:12px; font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.14em; font-size:11px; color:#1A1410; background:rgba(246,239,221,0.88); padding:5px 11px; border-radius:999px;">YOUR PHOTO</span>
+          </div>
+          <div ref="{{ handleRef }}" style="position:absolute; top:0; bottom:0; left:50%; width:3px; background:#F6EFDD; transform:translateX(-50%); z-index:5; box-shadow:0 0 0 1px rgba(0,0,0,0.18);">
+            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:46px; height:46px; border-radius:50%; background:#9E1B3F; border:3px solid #F6EFDD; box-shadow:0 6px 18px rgba(0,0,0,0.32); display:flex; align-items:center; justify-content:center; color:#F6EFDD; font-size:17px; font-family:'Oswald',sans-serif;">⟷</div>
+          </div>
+        </div>
+      </div>
+      <p style="text-align:center; margin:24px 0 0; font-family:'Oswald',sans-serif; letter-spacing:0.18em; font-size:12px; color:#7a6f63;">◆ DRAG TO WATCH A PHOTO BECOME A PAINTING ◆</p>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div style="background:#0F2A52; color:#F6EFDD; padding:18px 0; overflow:hidden; white-space:nowrap;">
+    <div style="display:inline-block; animation: marquee 26s linear infinite;">
+      <span ref="{{ marqueeRef }}"></span>
+    </div>
+  </div>
+
+  <!-- ============ ABOUT / STATEMENT ============ -->
+  <section id="about" style="padding: 96px 6vw; text-align:center;">
+    <p data-reveal style="font-family:'Oswald',sans-serif; letter-spacing:0.34em; font-size:14px; color:#9E1B3F; margin:0 0 20px; opacity:0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease;">A CREATIVE ESCAPE</p>
+    <h2 data-reveal style="font-family:'DM Serif Display',serif; font-weight:400; font-size: clamp(30px,4vw,56px); line-height:1.12; max-width:18ch; margin:0 auto; opacity:0; transform: translateY(28px); transition: opacity .8s ease .05s, transform .8s ease .05s;">
+      No experience needed. Just <em style="color:#1C3C8E;">you</em>, a photo, and an afternoon of <em style="color:#C9982E;">color</em>.
+    </h2>
+    <p data-reveal style="max-width:52ch; margin:28px auto 0; font-size:18px; line-height:1.65; color:#3a322a; opacity:0; transform: translateY(24px); transition: opacity .8s ease .1s, transform .8s ease .1s;">
+      Aarohi guides you step by step from a snapshot to a bold, gallery-worthy pop art portrait. Sip a little wine, nibble on snacks, and rediscover how good it feels to make something with your hands.
+    </p>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section style="padding: 10px 6vw 96px; display:grid; grid-template-columns: repeat(4, 1fr); gap: 30px;">
+    <sc-for list="{{ features }}" as="f" hint-placeholder-count="4">
+      <div data-reveal style="opacity:0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease;">
+        <div style="width:74px; height:74px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:22px; background: {{ f.bg }};">
+          <span style="color:#F6EFDD; font-size:30px; line-height:1;">{{ f.icon }}</span>
+        </div>
+        <h3 style="font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:0.04em; font-size:19px; text-transform:uppercase; margin:0 0 10px; color:{{ f.bg }};">{{ f.title }}</h3>
+        <p style="font-size:15.5px; line-height:1.6; color:#3a322a; margin:0;">{{ f.body }}</p>
+      </div>
+    </sc-for>
+  </section>
+
+  <!-- ============ EXPERIENCE / AMBIANCE ============ -->
+  <section id="experience" style="padding: 20px 6vw 30px;">
+    <div style="display:grid; grid-template-columns: 0.95fr 1.05fr; gap:58px; align-items:center;">
+      <div data-reveal style="opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s ease;">
+        <p style="font-family:'Oswald',sans-serif; letter-spacing:0.34em; font-size:13px; color:#245A33; margin:0 0 16px;">THE VIBE</p>
+        <h2 style="font-family:'DM Serif Display',serif; font-weight:400; font-size: clamp(30px,3.8vw,52px); line-height:1.08; margin:0 0 22px;">A little <em style="color:#9E1B3F;">wine</em>, a lot of <em style="color:#1C3C8E;">color</em>, zero pressure.</h2>
+        <p style="font-size:17px; line-height:1.65; color:#3a322a; max-width:42ch; margin:0 0 30px;">This is your afternoon to exhale. Pour a glass, settle in with good company, and let the to-do list wait. Aarohi keeps it easy and unhurried — you'll be amazed what two relaxed hours and a little paint can do.</p>
+        <ul style="list-style:none; padding:0; margin:0; display:grid; grid-template-columns:1fr 1fr; gap:15px 26px;">
+          <li style="display:flex; align-items:center; gap:12px; font-size:15.5px; color:#2a241e;"><span style="width:11px;height:11px;border-radius:50%;background:#9E1B3F;flex:none;"></span>Wine &amp; bubbly poured</li>
+          <li style="display:flex; align-items:center; gap:12px; font-size:15.5px; color:#2a241e;"><span style="width:11px;height:11px;border-radius:50%;background:#C9982E;flex:none;"></span>A grazing &amp; cheese board</li>
+          <li style="display:flex; align-items:center; gap:12px; font-size:15.5px; color:#2a241e;"><span style="width:11px;height:11px;border-radius:50%;background:#1C3C8E;flex:none;"></span>A feel-good playlist</li>
+          <li style="display:flex; align-items:center; gap:12px; font-size:15.5px; color:#2a241e;"><span style="width:11px;height:11px;border-radius:50%;background:#245A33;flex:none;"></span>Warm, patient guidance</li>
+          <li style="display:flex; align-items:center; gap:12px; font-size:15.5px; color:#2a241e;"><span style="width:11px;height:11px;border-radius:50%;background:#3E2178;flex:none;"></span>Every supply included</li>
+          <li style="display:flex; align-items:center; gap:12px; font-size:15.5px; color:#2a241e;"><span style="width:11px;height:11px;border-radius:50%;background:#9E1B3F;flex:none;"></span>Zero experience needed</li>
+        </ul>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px;">
+        <div data-reveal style="grid-row:span 2; opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s ease;">
+          <div style="background:#fff; padding:13px; border-radius:5px; box-shadow:0 18px 38px rgba(26,20,16,0.14); transform:rotate(-1.6deg); height:100%;">
+            <image-slot id="exp-1" style="display:block; width:100%; height:100%; min-height:330px;" shape="rect" radius="2" placeholder="Wine &amp; good company"></image-slot>
+          </div>
+        </div>
+        <div data-reveal style="opacity:0; transform:translateY(26px); transition:opacity .8s ease .06s, transform .8s ease .06s;">
+          <div style="background:#fff; padding:13px; border-radius:5px; box-shadow:0 18px 38px rgba(26,20,16,0.14); transform:rotate(1.8deg);">
+            <image-slot id="exp-2" style="display:block; width:100%; aspect-ratio:4/3;" shape="rect" radius="2" placeholder="Brushes &amp; palette"></image-slot>
+          </div>
+        </div>
+        <div data-reveal style="opacity:0; transform:translateY(26px); transition:opacity .8s ease .12s, transform .8s ease .12s;">
+          <div style="background:#fff; padding:13px; border-radius:5px; box-shadow:0 18px 38px rgba(26,20,16,0.14); transform:rotate(-1.2deg);">
+            <image-slot id="exp-3" style="display:block; width:100%; aspect-ratio:4/3;" shape="rect" radius="2" placeholder="Painting together"></image-slot>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div data-reveal style="text-align:center; margin-top:64px; opacity:0; transform:translateY(20px); transition:opacity .8s ease, transform .8s ease;">
+      <img src="assets/palette-strip.jpg" alt="Hand-mixed workshop palette" style="display:block; width:100%; max-width:740px; margin:0 auto; border-radius:4px; box-shadow:0 12px 28px rgba(0,0,0,0.14);">
+      <p style="font-family:'Oswald',sans-serif; letter-spacing:0.2em; font-size:12px; color:#7a6f63; margin:16px 0 0;">EVERY PALETTE IS MIXED BY HAND — THESE ARE THE COLORS FROM A RECENT PORTRAIT</p>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section id="gallery" style="padding: 90px 6vw; background:#0F2A52; color:#F6EFDD; position:relative; overflow:hidden;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:20px; margin-bottom:54px;">
+      <div>
+        <p style="font-family:'Oswald',sans-serif; letter-spacing:0.32em; font-size:13px; color:#C9982E; margin:0 0 12px;">FRESH OFF THE EASEL</p>
+        <h2 style="font-family:'DM Serif Display',serif; font-weight:400; font-size: clamp(34px,4.4vw,60px); margin:0; line-height:1;">The Gallery Wall</h2>
+      </div>
+      <p style="max-width:36ch; font-size:16px; line-height:1.6; color:#c8d2e4; margin:0;">Same face, turned all the way up. Here's a real portrait painted right here at the workshop — drop in your own photos to picture them framed beside it.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 36px;">
+      <!-- real painting from the workshop -->
+      <div data-reveal style="opacity:0; transform: translateY(34px); transition: opacity .8s ease, transform .8s ease;">
+        <div style="position:relative; padding:16px; background:#F6EFDD; border-radius:5px; box-shadow:0 24px 44px rgba(0,0,0,0.42); transform: rotate(-3deg); transition: transform .35s ease;" style-hover="transform: rotate(0deg) translateY(-6px);">
+          <span style="position:absolute; top:-13px; left:-13px; z-index:3; font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:0.1em; font-size:11px; color:#0F2A52; background:#C9982E; padding:7px 13px; border-radius:999px; box-shadow:0 6px 14px rgba(0,0,0,0.28); transform:rotate(-4deg);">REAL RESULT</span>
+          <div style="border:3px solid #1C3C8E; border-radius:3px; overflow:hidden;">
+            <img src="assets/hero-popart.jpg" alt="A finished pop art portrait" style="display:block; width:100%; aspect-ratio:4/5; object-fit:cover;">
+          </div>
+        </div>
+        <p style="font-family:'Oswald',sans-serif; letter-spacing:0.14em; font-size:13px; color:#c8d2e4; text-align:center; margin:18px 0 0;">PAINTED AT THE WORKSHOP · GOUACHE</p>
+      </div>
+      <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="2">
+        <div data-reveal style="opacity:0; transform: translateY(34px); transition: opacity .8s ease, transform .8s ease; transform-origin:center;">
+          <div style="padding:16px; background:#F6EFDD; border-radius:5px; box-shadow:0 24px 44px rgba(0,0,0,0.34); transform: rotate({{ g.tilt }}); transition: transform .35s ease;" style-hover="transform: rotate(0deg) translateY(-6px);">
+            <div style="border:3px solid {{ g.frame }}; border-radius:3px; overflow:hidden;">
+              <image-slot id="{{ g.id }}" style="display:block; width:100%; aspect-ratio:4/5;" shape="rect" placeholder="Drop a photo"></image-slot>
+            </div>
+          </div>
+          <p style="font-family:'Oswald',sans-serif; letter-spacing:0.14em; font-size:13px; color:#c8d2e4; text-align:center; margin:18px 0 0;">{{ g.caption }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ============ DETAILS BAND ============ -->
+  <section style="padding: 90px 6vw;">
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:0; background:#0F2A52; border-radius:14px; overflow:hidden; color:#F6EFDD;">
+      <div data-reveal style="padding:42px 36px; border-right:1px solid rgba(255,255,255,0.12); opacity:0; transform:translateY(20px); transition:opacity .7s ease, transform .7s ease;">
+        <p style="font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:0.06em; font-size:21px; margin:0 0 6px;">2 SESSIONS</p>
+        <p style="font-family:'Oswald',sans-serif; font-weight:500; letter-spacing:0.06em; font-size:16px; color:#c8d2e4; margin:0 0 14px;">2 hours each</p>
+        <p style="font-family:'DM Serif Display',serif; font-style:italic; font-size:40px; color:#C9982E; margin:0;">$80 total</p>
+      </div>
+      <div data-reveal style="padding:42px 36px; border-right:1px solid rgba(255,255,255,0.12); opacity:0; transform:translateY(20px); transition:opacity .7s ease .08s, transform .7s ease .08s;">
+        <p style="font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:0.06em; font-size:21px; margin:0 0 14px; color:#C9982E;">⚇ GROUP DISCOUNT</p>
+        <p style="font-size:15.5px; line-height:1.6; color:#dbe2ee; margin:0;">Bring a friend or gather your group and save together. The more the merrier — and the cheaper.</p>
+      </div>
+      <div data-reveal style="padding:42px 36px; opacity:0; transform:translateY(20px); transition:opacity .7s ease .16s, transform .7s ease .16s;">
+        <p style="font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:0.06em; font-size:21px; margin:0 0 14px; color:#C9982E;">⚘ WINE &amp; SNACKS</p>
+        <p style="font-size:15.5px; line-height:1.6; color:#dbe2ee; margin:0;">Light bites and a glass of something nice are on us. Sip, snack, and let the afternoon unfold.</p>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:26px; margin-top:26px;">
+      <sc-for list="{{ logistics }}" as="l" hint-placeholder-count="3">
+        <div data-reveal style="padding:30px 30px; border:2px solid rgba(26,20,16,0.12); border-radius:14px; opacity:0; transform:translateY(20px); transition:opacity .7s ease, transform .7s ease;">
+          <p style="font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.2em; font-size:12px; color:{{ l.color }}; margin:0 0 6px;">{{ l.kicker }}</p>
+          <p style="font-family:'Oswald',sans-serif; font-weight:700; font-size:22px; margin:0 0 10px; color:#1A1410;">{{ l.title }}</p>
+          <p style="font-size:15px; line-height:1.6; color:#3a322a; margin:0;">{{ l.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section id="voices" style="padding: 40px 6vw 96px;">
+    <div style="text-align:center; margin-bottom:54px;">
+      <p data-reveal style="font-family:'Oswald',sans-serif; letter-spacing:0.32em; font-size:13px; color:#9E1B3F; margin:0 0 12px; opacity:0; transform:translateY(20px); transition:opacity .7s ease, transform .7s ease;">FROM THE STUDIO</p>
+      <h2 data-reveal style="font-family:'DM Serif Display',serif; font-weight:400; font-size: clamp(32px,4.2vw,56px); margin:0; opacity:0; transform:translateY(24px); transition:opacity .8s ease, transform .8s ease;">What the moms are saying</h2>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:30px;">
+      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
+        <figure data-reveal style="margin:0; background:#fff; border-radius:14px; padding:34px 30px 28px; box-shadow:0 16px 36px rgba(26,20,16,0.08); border-top:5px solid {{ t.accent }}; opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease;">
+          <p style="font-family:'DM Serif Display',serif; font-size:54px; line-height:0.5; color:{{ t.accent }}; margin:6px 0 14px; height:24px;">“</p>
+          <blockquote style="margin:0 0 22px; font-size:16.5px; line-height:1.6; color:#2a241e;">{{ t.quote }}</blockquote>
+          <figcaption style="display:flex; align-items:center; gap:14px;">
+            <span style="width:46px; height:46px; border-radius:50%; background:{{ t.accent }}; color:#F6EFDD; display:flex; align-items:center; justify-content:center; font-family:'Oswald',sans-serif; font-weight:700; font-size:17px;">{{ t.initials }}</span>
+            <span>
+              <span style="display:block; font-family:'Oswald',sans-serif; font-weight:600; font-size:15px; color:#1A1410; letter-spacing:0.02em;">{{ t.name }}</span>
+              <span style="display:block; font-size:13px; color:#7a6f63;">{{ t.role }}</span>
+            </span>
+          </figcaption>
+        </figure>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ============ RESERVE / FORM ============ -->
+  <section id="reserve" style="padding: 90px 6vw; background:#9E1B3F; color:#F6EFDD; position:relative; overflow:hidden;">
+    <div style="position:absolute; top:-60px; right:-40px; width:260px; height:260px; border-radius:50%; background:#C9982E; opacity:0.16; animation: floatblob 12s ease-in-out infinite;"></div>
+    <div style="display:grid; grid-template-columns: 0.9fr 1.1fr; gap:64px; align-items:center; position:relative; z-index:2;">
+      <div>
+        <p style="font-family:'Oswald',sans-serif; letter-spacing:0.3em; font-size:13px; color:#F4D58A; margin:0 0 16px;">SPACES ARE LIMITED</p>
+        <h2 style="font-family:'DM Serif Display',serif; font-weight:400; font-size: clamp(36px,4.8vw,64px); line-height:1.02; margin:0 0 20px;">Reserve your seat at the easel</h2>
+        <p style="font-size:18px; line-height:1.6; color:#f3dde2; max-width:34ch; margin:0 0 30px;">Tell Aarohi a little about you and she'll be in touch to lock in dates that work. Solo or with friends — everyone's welcome.</p>
+        <div style="display:flex; flex-direction:column; gap:12px; font-family:'Oswald',sans-serif; letter-spacing:0.06em; font-size:15px;">
+          <span>✆&nbsp;&nbsp;848-239-8105</span>
+          <span>⌖&nbsp;&nbsp;Metuchen, New Jersey</span>
+          <a href="https://instagram.com/aarohi.art" target="_blank" style="color:#F6EFDD; text-decoration:none;">❏&nbsp;&nbsp;@aarohi.art</a>
+        </div>
+      </div>
+
+      <form ref="{{ formRef }}" onsubmit="{{ onSubmit }}" style="background:#F6EFDD; color:#1A1410; border-radius:16px; padding:38px; box-shadow:0 30px 60px rgba(0,0,0,0.28);">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <label style="display:block;">
+            <span style="font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.1em; font-size:11px; color:#7a6f63; text-transform:uppercase;">Name</span>
+            <input name="name" required placeholder="Your name" style="width:100%; margin-top:6px; padding:13px 14px; border:2px solid rgba(26,20,16,0.15); border-radius:9px; font-family:'Archivo',sans-serif; font-size:15px; background:#fff; outline:none;" style-focus="border-color:#9E1B3F;">
+          </label>
+          <label style="display:block;">
+            <span style="font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.1em; font-size:11px; color:#7a6f63; text-transform:uppercase;">Email</span>
+            <input name="email" type="email" required placeholder="you@email.com" style="width:100%; margin-top:6px; padding:13px 14px; border:2px solid rgba(26,20,16,0.15); border-radius:9px; font-family:'Archivo',sans-serif; font-size:15px; background:#fff; outline:none;" style-focus="border-color:#9E1B3F;">
+          </label>
+        </div>
+        <label style="display:block; margin-top:16px;">
+          <span style="font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.1em; font-size:11px; color:#7a6f63; text-transform:uppercase;">How many seats?</span>
+          <select name="seats" style="width:100%; margin-top:6px; padding:13px 14px; border:2px solid rgba(26,20,16,0.15); border-radius:9px; font-family:'Archivo',sans-serif; font-size:15px; background:#fff; outline:none;" style-focus="border-color:#9E1B3F;">
+            <option>Just me</option>
+            <option>2 — me + a friend</option>
+            <option>3–5 — a small group</option>
+            <option>6+ — a big group (let's talk discount!)</option>
+          </select>
+        </label>
+        <label style="display:block; margin-top:16px;">
+          <span style="font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.1em; font-size:11px; color:#7a6f63; text-transform:uppercase;">A note for Aarohi</span>
+          <textarea name="note" rows="3" placeholder="Days that work, questions, anything!" style="width:100%; margin-top:6px; padding:13px 14px; border:2px solid rgba(26,20,16,0.15); border-radius:9px; font-family:'Archivo',sans-serif; font-size:15px; background:#fff; outline:none; resize:vertical;" style-focus="border-color:#9E1B3F;"></textarea>
+        </label>
+        <button type="submit" style="width:100%; margin-top:22px; padding:16px; background:#9E1B3F; color:#F6EFDD; border:none; border-radius:999px; font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.1em; font-size:15px; cursor:pointer; transition: background .2s ease, transform .2s ease;" style-hover="background:#7d1531; transform:translateY(-2px);">REQUEST MY SEAT →</button>
+        <p ref="{{ formNoteRef }}" style="text-align:center; font-size:13px; color:#7a6f63; margin:14px 0 0;">Opens your email, pre-filled and ready to send.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background:#0F2A52; color:#F6EFDD; padding:54px 6vw 40px; text-align:center;">
+    <p style="font-family:'DM Serif Display',serif; font-style:italic; font-size: clamp(24px,3vw,38px); margin:0 0 10px; color:#F6EFDD;">Paint. Connect. Create something amazing.</p>
+    <p style="font-family:'Sacramento',cursive; font-size:34px; color:#C9982E; margin:0 0 26px;">by Aarohi</p>
+    <div style="display:flex; align-items:center; justify-content:center; gap:28px; font-family:'Oswald',sans-serif; letter-spacing:0.12em; font-size:13px; flex-wrap:wrap;">
+      <a href="tel:8482398105" style="color:#c8d2e4; text-decoration:none;">848-239-8105</a>
+      <span style="opacity:0.4;">·</span>
+      <span style="color:#c8d2e4;">METUCHEN, NJ</span>
+      <span style="opacity:0.4;">·</span>
+      <a href="https://instagram.com/aarohi.art" target="_blank" style="color:#c8d2e4; text-decoration:none;">@AAROHI.ART</a>
+    </div>
+    <p style="font-size:12px; color:#6b7a93; margin:30px 0 0; letter-spacing:0.04em;">© 2026 Aarohi Desai · Pop Art Portrait Workshop · Made with color in New Jersey</p>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  compareRef = React.createRef();
+  beforeRef = React.createRef();
+  handleRef = React.createRef();
+  marqueeRef = React.createRef();
+  formRef = React.createRef();
+  formNoteRef = React.createRef();
+
+  setSplit(pct) {
+    const p = Math.max(2, Math.min(98, pct));
+    if (this.beforeRef.current) this.beforeRef.current.style.clipPath = `inset(0 ${100 - p}% 0 0)`;
+    if (this.handleRef.current) this.handleRef.current.style.left = p + '%';
+  }
+
+  componentDidMount() {
+    // before / after comparison slider
+    const cont = this.compareRef.current;
+    if (cont) {
+      const update = (clientX) => {
+        const r = cont.getBoundingClientRect();
+        this.setSplit(((clientX - r.left) / r.width) * 100);
+      };
+      let dragging = false;
+      cont.addEventListener('pointerdown', (e) => { dragging = true; update(e.clientX); e.preventDefault(); });
+      window.addEventListener('pointermove', (e) => { if (dragging) update(e.clientX); });
+      window.addEventListener('pointerup', () => { dragging = false; });
+      this.setSplit(52);
+      // one-time hint sweep so it's obviously draggable
+      setTimeout(() => {
+        const seq = [52, 61, 69, 61, 50, 43, 50, 52];
+        let i = 0;
+        const tick = () => { if (i < seq.length) { this.setSplit(seq[i++]); setTimeout(tick, 135); } };
+        tick();
+      }, 1000);
+    }
+
+    // marquee content
+    if (this.marqueeRef.current) {
+      const word = (c, t) => `<span style="font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.18em; font-size:15px; margin:0 26px; color:${c};">${t}</span>`;
+      const unit = word('#F6EFDD','BOLD') + word('#C9982E','✦') + word('#F6EFDD','COLORFUL') + word('#C9982E','✦') + word('#F6EFDD','YOU') + word('#C9982E','✦') + word('#F6EFDD','WINE & BUBBLY') + word('#C9982E','✦') + word('#F6EFDD','GRAZING BOARD') + word('#C9982E','✦') + word('#F6EFDD','GOOD MUSIC') + word('#C9982E','✦') + word('#F6EFDD','GREAT COMPANY') + word('#C9982E','✦') + word('#F6EFDD','NO EXPERIENCE NEEDED') + word('#C9982E','✦') + word('#F6EFDD','ALL SUPPLIES INCLUDED') + word('#C9982E','✦');
+      this.marqueeRef.current.innerHTML = unit + unit;
+    }
+
+    // scroll reveal
+    const els = document.querySelectorAll('[data-reveal]');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('ds-revealed'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.18 });
+      els.forEach((el) => io.observe(el));
+    } else {
+      els.forEach((el) => el.classList.add('ds-revealed'));
+    }
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    const f = this.formRef.current;
+    const get = (n) => (f.elements[n] ? f.elements[n].value : '');
+    const name = get('name'), email = get('email'), seats = get('seats'), note = get('note');
+    const to = 'hello@aarohidesai.art'; // ← swap for Aarohi's real email
+    const subject = `Pop Art Portrait Workshop — seat request from ${name || 'a new artist'}`;
+    const body =
+      `Hi Aarohi!\n\nI'd love to join the Pop Art Portrait Workshop.\n\n` +
+      `Name: ${name}\nEmail: ${email}\nSeats: ${seats}\n\nNote:\n${note || '(none)'}\n\nThank you!`;
+    window.location.href =
+      `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (this.formNoteRef.current) {
+      this.formNoteRef.current.textContent = '✓ Opening your email — just hit send!';
+      this.formNoteRef.current.style.color = '#245A33';
+    }
+  };
+
+  renderVals() {
+    return {
+      compareRef: this.compareRef,
+      beforeRef: this.beforeRef,
+      handleRef: this.handleRef,
+      marqueeRef: this.marqueeRef,
+      formRef: this.formRef,
+      formNoteRef: this.formNoteRef,
+      onSubmit: this.onSubmit,
+      features: [
+        { icon: '✦', bg: '#9E1B3F', title: 'Create Your Portrait', body: 'A fun, guided workshop that turns your photo into bold, colorful art.' },
+        { icon: '◉', bg: '#1C3C8E', title: 'Easy & Enjoyable', body: 'Step-by-step guidance every brushstroke of the way. No experience needed.' },
+        { icon: '♥', bg: '#245A33', title: 'Relax & Unwind', body: 'Sip, snack, and enjoy creative time set aside just for you.' },
+        { icon: '◐', bg: '#3E2178', title: 'All Supplies Included', body: 'Canvas, paint, brushes — we provide everything you need to create.' },
+      ],
+      gallery: [
+        { id: 'gallery-1', frame: '#9E1B3F', tilt: '2.5deg', caption: 'YOUR PORTRAIT HERE' },
+        { id: 'gallery-2', frame: '#C9982E', tilt: '-2deg', caption: 'YOUR PORTRAIT HERE' },
+      ],
+      logistics: [
+        { kicker: 'WHEN', color: '#9E1B3F', title: 'Flexible Dates', body: "We'll work together to find dates and times that fit your schedule." },
+        { kicker: 'WHERE', color: '#245A33', title: 'Metuchen, NJ', body: 'Exact studio location is shared with you upon registration.' },
+        { kicker: 'WHO', color: '#3E2178', title: 'Solo or Friends', body: 'Everyone is welcome. Come for the art, stay for the fun.' },
+      ],
+      testimonials: [
+        { initials: 'LM', name: 'Linda Marchetti', role: 'Edison, NJ', accent: '#9E1B3F', quote: "I hadn't picked up a paintbrush in twenty years. Two hours with Aarohi and I walked out with a portrait that's now framed in my hallway. I tear up a little every time I pass it." },
+        { initials: 'PR', name: 'Priya Raghavan', role: 'Metuchen, NJ', accent: '#1C3C8E', quote: "I came with three girlfriends and we laughed the entire time. Aarohi makes you feel like a real artist — patient, warm, and never rushed. Best afternoon I've had in ages." },
+        { initials: 'DC', name: 'Donna Caruso', role: 'Highland Park, NJ', accent: '#245A33', quote: "I'm not a 'crafty' person and I was nervous. By the end I was genuinely proud of what I made. The wine and snacks were a lovely touch — felt like a real treat for myself." },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
