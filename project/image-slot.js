@@ -35,6 +35,10 @@
  *   placeholder  Empty-state caption.                      (default 'Drop an image')
  *   src          Optional initial/fallback image URL. A user drop overrides
  *                it; clearing the drop reveals src again.
+ *   readonly     Boolean. Turns the slot into a non-interactive placeholder:
+ *                no click-to-browse, no drag-and-drop, no "browse files"
+ *                hint. The placeholder caption and any `src` image still
+ *                show, so authors can fill it later via src or the sidecar.
  *
  * Size and layout come from ordinary CSS on the element — width/height
  * inline or from a parent grid — so it composes with any layout.
@@ -226,7 +230,7 @@
 
   class ImageSlot extends HTMLElement {
     static get observedAttributes() {
-      return ['shape', 'radius', 'mask', 'fit', 'position', 'placeholder', 'src', 'id'];
+      return ['shape', 'radius', 'mask', 'fit', 'position', 'placeholder', 'src', 'id', 'readonly'];
     }
 
     constructor() {
@@ -267,7 +271,10 @@
       this._subFn = () => this._render();
       // Shadow-DOM listeners live with the shadow DOM — bound once here so
       // disconnect/reconnect (e.g. React remount) doesn't stack handlers.
-      this._empty.addEventListener('click', () => this._input.click());
+      this._empty.addEventListener('click', () => {
+        if (this.hasAttribute('readonly')) return;
+        this._input.click();
+      });
       root.addEventListener('click', (e) => {
         const act = e.target && e.target.getAttribute && e.target.getAttribute('data-act');
         if (act === 'replace') { this._exitReframe(true); this._input.click(); }
@@ -445,6 +452,9 @@
     // handleEvent — one listener object for all four drag events keeps the
     // add/remove symmetric and the depth counter correct.
     handleEvent(e) {
+      // A readonly slot ignores drops entirely — without preventDefault the
+      // browser won't fire 'drop', and we never flag data-over.
+      if (this.hasAttribute('readonly')) return;
       if (e.type === 'dragenter' || e.type === 'dragover') {
         // Without preventDefault the browser never fires 'drop'.
         e.preventDefault();
@@ -593,9 +603,13 @@
       this._ring.style.display = mask ? 'none' : '';
 
       // Controls and reframe entry gate on this so share links stay read-only.
-      const editable = !!(window.omelette && window.omelette.writeFile);
+      const readonly = this.hasAttribute('readonly');
+      const editable = !readonly && !!(window.omelette && window.omelette.writeFile);
       this.toggleAttribute('data-editable', editable);
+      // No "browse files" hint and no clickable cursor when the slot can't
+      // accept an upload (readonly, or a static/share context).
       this._sub.style.display = editable ? '' : 'none';
+      this._empty.style.cursor = readonly ? 'default' : '';
 
       // Content. The sidecar is also writable by the agent's write_file
       // tool, so its value isn't guaranteed canvas-originated — only accept
