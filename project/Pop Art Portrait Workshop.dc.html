@@ -281,6 +281,10 @@
           </label>
         </div>
         <label style="display:block; margin-top:16px;">
+          <span style="font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.1em; font-size:11px; color:#7a6f63; text-transform:uppercase;">Contact Number</span>
+          <input name="phone" type="tel" placeholder="Your phone number" style="width:100%; margin-top:6px; padding:13px 14px; border:2px solid rgba(26,20,16,0.15); border-radius:9px; font-family:'Archivo',sans-serif; font-size:15px; background:#fff; outline:none;" style-focus="border-color:#9E1B3F;">
+        </label>
+        <label style="display:block; margin-top:16px;">
           <span style="font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.1em; font-size:11px; color:#7a6f63; text-transform:uppercase;">How many seats?</span>
           <select name="seats" style="width:100%; margin-top:6px; padding:13px 14px; border:2px solid rgba(26,20,16,0.15); border-radius:9px; font-family:'Archivo',sans-serif; font-size:15px; background:#fff; outline:none;" style-focus="border-color:#9E1B3F;">
             <option>Just me</option>
@@ -376,12 +380,12 @@ class Component extends DCLogic {
     e.preventDefault();
     const f = this.formRef.current;
     const get = (n) => (f.elements[n] ? f.elements[n].value : '');
-    const name = get('name'), email = get('email'), seats = get('seats'), note = get('note');
-    const to = 'hello@aarohidesai.art'; // ← swap for Aarohi's real email
+    const name = get('name'), email = get('email'), phone = get('phone'), seats = get('seats'), note = get('note');
+    const to = 'aarohi.d.05@gmail.com';
     const subject = `Pop Art Portrait Workshop — seat request from ${name || 'a new artist'}`;
     const body =
       `Hi Aarohi!\n\nI'd love to join the Pop Art Portrait Workshop.\n\n` +
-      `Name: ${name}\nEmail: ${email}\nSeats: ${seats}\n\nNote:\n${note || '(none)'}\n\nThank you!`;
+      `Name: ${name}\nEmail: ${email}\nContact Number: ${phone || '(none)'}\nSeats: ${seats}\n\nNote:\n${note || '(none)'}\n\nThank you!`;
     window.location.href =
       `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     if (this.formNoteRef.current) {
