@@ -235,6 +235,15 @@
     .form-row { grid-template-columns: 1fr !important; }
   }
 
+  /* ── Desktop only: let gallery slots honor their 4/5 aspect-ratio ──
+     The <image-slot> shadow DOM defaults to a fixed height (160px), which
+     overrides the inline aspect-ratio and squashes the cards into wide
+     boxes. Releasing the height lets them stand as tall portraits matching
+     the real result. Scoped to >920px so mobile is untouched. */
+  @media (min-width: 921px) {
+    #gallery image-slot { height: auto !important; }
+  }
+
   /* ── Respect reduced-motion preference ── */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
